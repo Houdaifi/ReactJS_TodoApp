@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Task from "./components/Task";
 import TaskForm from "./components/TaskForm";
 
@@ -6,16 +6,18 @@ function App() {
   const AddOrEdit = "Add";
 
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('Tasks')));
-
-  const new_task = {name: '', completed: false, createdAt: new Date()};
+  const [task_to_add, setTaskToAdd] = useState("");
+  const new_task = {name: task_to_add, completed: false, createdAt: new Date()};
 
   const form_submit = (event) => {
     event.preventDefault();
 
-    if(new_task.name === "") return;
+    if(task_to_add === "") return;
 
     tasks.unshift(new_task);
+    localStorage.setItem('Tasks', JSON.stringify([...tasks]));
     setTasks([...tasks]);
+    setTaskToAdd('');
   }
 
   return (
@@ -23,7 +25,7 @@ function App() {
       <div className="flex items-center justify-center">
         <h1 className="text-3xl font-semibold">React TodoApp</h1>
       </div>
-        <TaskForm AddOrEdit={AddOrEdit} form_submit={form_submit} new_task={new_task}/>
+        <TaskForm AddOrEdit={AddOrEdit} form_submit={form_submit} task_to_add={task_to_add} setTaskToAdd={setTaskToAdd}/>
         <Task tasks={tasks} setTasks={setTasks}/>
     </div>
   );

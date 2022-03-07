@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faClipboardCheck, faTrash, faPalette } from '@fortawesome/free-solid-svg-icons';
-import { Draggable } from "react-drag-reorder";
 
 const Task = (props) => {
     
@@ -23,8 +22,8 @@ const Task = (props) => {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center">
-            <div className="flex flex-col w-1/2 space-y-3">
+        <div className="flex flex-col justify-center items-center max-h-96 overflow-y-auto">
+            <div className="flex flex-col md:w-1/2 space-y-3">
                 {/* <Draggable> */}
                     {tasks && tasks.map((task, index) => { 
                         return (
