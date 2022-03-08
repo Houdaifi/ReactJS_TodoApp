@@ -22,9 +22,31 @@ const Task = (props) => {
         setItem_in_local_storage_and_render_tasks(tasks);
     }
 
+    function Toggle_Tasks(boolean){
+        const all_tasks = JSON.parse(localStorage.getItem('Tasks'));
+        if (typeof boolean !== "boolean"){
+            setTasks([...all_tasks]);
+        }else{
+            setTasks([...all_tasks.filter((task) => task.completed == boolean)]);
+        }   
+    }
+
     return (
         <div className="flex flex-col justify-center items-center max-h-96 overflow-y-auto">
-            <div className="flex flex-col md:w-1/2 space-y-3">
+            <div className='flex flex-col md:flex-row justify-center items-center pb-4'>
+                <div>
+                    <button onClick={() => Toggle_Tasks('')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 border rounded-l-md">
+                        ALL
+                    </button>
+                    <button onClick={() => Toggle_Tasks(true)} className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 border">
+                        Completed
+                    </button>
+                    <button onClick={() => Toggle_Tasks(false)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border rounded-r-md">
+                        Uncompleted
+                    </button>
+                </div>
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 space-y-3">
                 <OrderGroup>
                     {tasks && tasks.map((task, index) => { 
                         return (
