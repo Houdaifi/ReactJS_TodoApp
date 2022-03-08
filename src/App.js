@@ -11,12 +11,12 @@ function App() {
 
   const form_submit = (event) => {
     event.preventDefault();
-
     if(task_to_add === "") return;
 
-    tasks.unshift(new_task);
-    localStorage.setItem('Tasks', JSON.stringify([...tasks]));
-    setTasks([...tasks]);
+    const all_tasks = JSON.parse(localStorage.getItem('Tasks'));
+    JSON.parse(localStorage.getItem('Tasks')).unshift(new_task);
+    localStorage.setItem('Tasks', JSON.stringify([...all_tasks]));
+    setTasks([...all_tasks]);
     setTaskToAdd('');
   }
 
