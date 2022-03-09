@@ -7,14 +7,15 @@ function App() {
 
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('Tasks')));
   const [task_to_add, setTaskToAdd] = useState("");
-  const new_task = {name: task_to_add, completed: false, createdAt: new Date()};
+  const new_task = {name: task_to_add, completed: false, createdAt: new Date(), color: 'bg-lime-300', setColor: false};
 
   const form_submit = (event) => {
     event.preventDefault();
-    const all_tasks = JSON.parse(localStorage.getItem('Tasks'));
+    let all_tasks = JSON.parse(localStorage.getItem('Tasks'));
     if(task_to_add === "") return;
 
     if(AddOrEdit === "Add"){
+      if(all_tasks == null) all_tasks = []
       all_tasks.unshift(new_task);
     }else if(AddOrEdit === "Edit"){
       const task_to_edit = JSON.parse(localStorage.getItem('TaskToEdit'));
