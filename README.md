@@ -14,6 +14,7 @@ CRUD React JS project, made it to learn more about React.
 - Tasks saved locally
 - Customize task color
 - CRUD task
+- Divide tasks by statut (Completed/Uncompleted)
 
 ## Project Screen Shot(s)
 
