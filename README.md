@@ -2,7 +2,7 @@
 
 CRUD React JS project, made it to learn more about React.
 
-## Built by
+## Built with
 
 - React JS, Tailwind CSS
 - React Hooks : useState, useEffect
